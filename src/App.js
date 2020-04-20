@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { Route, BrowserRouter } from 'react-router-dom';
+import IdRoute from './Routes/IdRoute'
+import IndexRoute from './Routes/IndexRoute'
+import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo';
+import JavascriptTimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+function index({match}){
+  return <p>Index!</p>
+}
+function test_({match}){
+  return  <p>test_!</p>
+}
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  JavascriptTimeAgo.locale(en)
+	return (
+		<div className="App">
+			<BrowserRouter>
+				<Route exact={true} path="/" component={IndexRoute}/>
+				<Route path="/:id" component={IdRoute} />
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
